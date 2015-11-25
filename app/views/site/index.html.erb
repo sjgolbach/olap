@@ -1,0 +1,40 @@
+
+<div id="form-region">
+</div>
+
+<div id="results-region">
+	<div id="highcharts"></div>
+</div>
+
+<script>
+	var dates = <%== @dates %>
+	var products = <%== @products %>
+	var domains = <%== @domains %>
+</script>
+
+<script type="text/template" id="dimension">
+	<div id="dimensions">
+		<div class="dimension-wrapper">
+			<h3>Products</h3>
+			<div id="products" class="dimension"></div>
+			<div id="selected_products" class="dimension selected"></div>
+		</div>
+		<div class="dimension-wrapper">
+			<h3>Dates</h3>
+			<div id="dates" class="dimension"></div>
+			<div id="selected_dates" class="dimension selected"></div>
+		</div>
+		<div class="dimension-wrapper">
+			<h3>Domains</h3>
+			<div id="domains" class="dimension"></div>
+			<div id="selected_domains" class="dimension selected"></div>
+		</div>
+		<div class="actions">
+			<button id="submit">Submit</button>
+		</div>
+	</div
+</script>
+
+<script type="text/template" id="dimension-item">
+	<%%= text %>
+</script>

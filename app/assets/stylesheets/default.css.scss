@@ -1,0 +1,26 @@
+@import 'colors';
+
+html {height:100%; overflow:auto;}
+body {
+	height: 100%;
+	margin: 0;
+
+	background:$primary-bg-color;
+
+	background-size:16px 16px;
+	overflow:auto;
+	font-family:'Open Sans', arial, sans-serif;
+}
+
+/* typography */
+
+h1, h2 {color:$primary-font-color;font-weight:normal;}
+h1 {font-size:28px; text-transform: normal;}
+h2 {font-size:24px; }
+h3 {font-size:18px; }
+h4 {font-size:12px}
+
+/* end typography */
+
+
+
