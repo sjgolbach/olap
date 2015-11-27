@@ -15,18 +15,54 @@ class SiteController < ApplicationController
 	end
 
 	def results
+		puts params	
+		dimensions = params[:dimensions] # domain, product, date
+		chart_type = params[:chart_type] || 'column'
+
+		ids = {}
+		dimensions.each do |key, dimension|
+			puts dimension
+			position = dimension['position']
+			ids[position] = dimension['ids']
+		end
+
 		values = []
-		params['domains'].each do |domain|
-			params['products'].each do |product|
+		ids['3'].each do |d3|
+			ids['2'].each do |d2|
 				ary = []
-				params['dates'].each do |date|
-					key = "#{date}:#{product}:#{domain}"
-					ary << $redis.get(key).to_i
+				ids['1'].each do |d1|
+					key = "#{d1}:#{d2}:#{d3}"
+					puts key
+					ary << $redis.get(key).to_i #
 				end
-				values << {:name => product, data: ary }
+				values << {:name => d2, data: ary }
 			end
 		end
-		render :json => values.to_json
+
+		highchart = {
+			:chart => {
+				:type => chart_type,
+				:height => 600
+			},
+			:title => {
+				:text => ''
+			},
+			:xAxis => {
+				:categories => ids['1'],
+			},
+			:yAxis => {
+				:min => 0,
+			},
+			:series => values
+		}
+
+		if chart_type == 'stacked-area'
+			highchart[:chart][:type] = 'area'
+			plot_options = {:area => {:stacking => 'normal'}}
+			highchart[:plotOptions] = plot_options
+		end
+
+		render :json => {:highchart => highchart}.to_json
 	end
 
 private
@@ -46,3 +82,5 @@ private
 	end
 
 end
+
+

@@ -6,14 +6,34 @@
 	<div id="highcharts"></div>
 </div>
 
+
+
 <script>
 	var dates = <%== @dates %>
 	var products = <%== @products %>
 	var domains = <%== @domains %>
+
+	var dimensions = ['dates','products','domains'];
+	var data = {};
+	data['dates'] = dates;
+	data['products'] = products;
+	data['domains'] = domains;
+
 </script>
 
 <script type="text/template" id="dimension">
 	<div id="dimensions">
+		<div class="dimension-wrapper chart-wrapper">
+			<h3>Charts</h3>
+			<ul id="chart" class="dimension chart">
+				<li><input type="radio" name="chart-type" value="column"> &nbsp; Column</li>
+				<li><input type="radio" name="chart-type" value="line"> &nbsp; Line</li>
+				<li><input type="radio" name="chart-type" value="area"> &nbsp; Area</li>
+				<li><input type="radio" name="chart-type" value="bar"> &nbsp; Bar</li>
+				<li><input type="radio" name="chart-type" value="pie"> &nbsp; Pie</li>
+				<li><input type="radio" name="chart-type" value="stacked-area"> &nbsp; Stacked Area</li>
+			</ul>
+		</div>
 		<div class="dimension-wrapper">
 			<h3>Products</h3>
 			<div id="products" class="dimension"></div>

@@ -1,115 +1,166 @@
 ALL,All,#
 CC,Credit cards,#
-CC-72,"HSBC Platinum Credit Card",ALL|CC
-CC-181,"28 Degrees Platinum MasterCard",ALL|CC
-CC-40,"ME frank Credit Card",ALL|CC
-CC-48,"St.George Vertigo Platinum",ALL|CC
-CC-22,"NAB Low Rate Card",ALL|CC
-CC-434,"Westpac Altitude Black - Online Only Offer (Rewards)",ALL|CC
-CC-406,"Westpac Low Rate - Online Only Offer",ALL|CC
-CC-437,"Westpac Altitude - Online Only Offer (Rewards)",ALL|CC
-CC-436,"Coles Low Rate MasterCard",ALL|CC
-CC-240,"American Express Platinum Edge Credit Card",ALL|CC
-CC-152,"NAB Qantas Rewards Premium Card",ALL|CC
-CC-433,"Westpac Altitude Platinum - Online Only Offer (Qantas)",ALL|CC
-CC-351,"Virgin Money Virgin Australia Velocity Flyer Card - Balance Transfer Offer",ALL|CC
-CC-314,"Bank of Melbourne Vertigo Platinum",ALL|CC
-CC-326,"ANZ Rewards Platinum",ALL|CC
-CC-275,"Virgin Money Virgin Australia Velocity High Flyer Card",ALL|CC
-CC-364,"Coles No Annual Fee MasterCard",ALL|CC
-CC-43,"ANZ First",ALL|CC
-CC-67,"ANZ Low Rate",ALL|CC
-CC-98,"American Express Qantas Discovery Card",ALL|CC
-CC-325,"ANZ Rewards",ALL|CC
-CC-311,"American Express Velocity Platinum Card",ALL|CC
-CC-400,"ANZ Frequent Flyer Black",ALL|CC
-CC-166,"Bankwest Zero Platinum MasterCard",ALL|CC
-CC-348,"NAB flybuys Rewards Card",ALL|CC
-CC-435,"Westpac Altitude Black - Online Only Offer (Qantas)",ALL|CC
-CC-60,"St.George Vertigo",ALL|CC
-CC-216,"ANZ Frequent Flyer",ALL|CC
-CC-177,"NAB Qantas Rewards Card",ALL|CC
-CC-53,"HSBC Credit Card",ALL|CC
-CC-231,"Virgin Money No Annual Fee Card",ALL|CC
-CC-25,"NAB Velocity Rewards Premium Card",ALL|CC
-CC-323,"Bankwest Qantas Gold MasterCard",ALL|CC
-CC-322,"Bankwest Qantas Platinum MasterCard",ALL|CC
-CC-327,"HSBC Platinum Qantas Credit Card",ALL|CC
-CC-26,"NAB Velocity Rewards Card",ALL|CC
-CC-140,"Woolworths Money Everyday Platinum Credit Card",ALL|CC
-CC-42,"Bankwest More Platinum MasterCard",ALL|CC
-CC-218,"ANZ Frequent Flyer Platinum",ALL|CC
-CC-390,"St.George Amplify Signature (Rewards)",ALL|CC
-CC-168,"Bankwest Breeze Platinum MasterCard",ALL|CC
-CC-21,"NAB Premium Card",ALL|CC
-CC-227,"BankSA Amplify Classic (Qantas)",ALL|CC
-CC-64,"Bankwest Zero MasterCard",ALL|CC
+PL,Personal loans,#
+EL,Electricity,#
+PL-358,"People's Choice Credit Union Discounted Personal Loan (over 30k, cars up to 3 years old) (Fixed)",ALL|PL
+PL-425,"Bank Australia Lifestyle Personal Loan (Variable, Unsecured)",ALL|PL
+EL-2390,"Powershop Online Saver",ALL|EL
+PL-314,"SocietyOne Unsecured Personal Loan - Excellent Credit (Fixed)",ALL|PL
 CC-229,"Coles Rewards MasterCard",ALL|CC
-CC-356,"American Express Velocity Escape Card",ALL|CC
-CC-388,"St.George Amplify Platinum (Rewards)",ALL|CC
-CC-438,"Westpac Altitude - Online Only Offer (Qantas)",ALL|CC
-CC-415,"NAB Premium Card - Online Offer",ALL|CC
-CC-28,"Westpac 55 Day Card",ALL|CC
-CC-315,"Bank of Melbourne Vertigo",ALL|CC
-CC-355,"ANZ Low Rate Platinum",ALL|CC
-CC-365,"Virgin Money Virgin Australia Velocity Flyer Card - Purchase Rate Offer",ALL|CC
-CC-186,"ANZ Platinum",ALL|CC
-CC-245,"Mozo Big Bot Buster",ALL|CC
-CC-59,"Bankwest More Gold MasterCard",ALL|CC
-CC-150,"Westpac 55 Day Platinum Card",ALL|CC
-CC-391,"St.George Amplify Signature (Qantas)",ALL|CC
-CC-172,"Community First Credit Union McGrath Pink Visa",ALL|CC
-CC-20,"NAB Low Fee Card",ALL|CC
-CC-49,"Bank Australia Low Rate Visa",ALL|CC
-CC-410,"G&C Mutual Bank Low Rate Visa Credit Card",ALL|CC
-CC-253,"Police Bank Visa Credit Card",ALL|CC
-CC-212,"QANTAS Credit Union Lifestyle",ALL|CC
-CC-203,"Teachers Mutual Bank Teachers Credit Card",ALL|CC
-CC-307,"Maritime, Mining & Power Credit Union Visa Credit Card",ALL|CC
-CC-350,"Victoria Teachers Mutual Bank Visa Platinum Credit Card",ALL|CC
-CC-256,"SCU Low Rate Visa Credit Card",ALL|CC
-CC-272,"B&E Personal Banking Visa Credit Card",ALL|CC
-CC-343,"Virgin Money Low Rate Card",ALL|CC
-CC-265,"ADCU Low Rate Visa Credit Card",ALL|CC
-CC-95,"BankSA Vertigo",ALL|CC
-CC-211,"St.George Amplify Classic (Qantas)",ALL|CC
-CC-264,"Credit Union SA Visa Credit Card",ALL|CC
-CC-35,"Westpac Altitude (Rewards)",ALL|CC
-CC-250,"BCU Classic",ALL|CC
-CC-213,"QANTAS Credit Union Lifestyle Plus",ALL|CC
-CC-420,"ANZ First - Student Offer",ALL|CC
-CC-293,"Bendigo Bank Just Business",ALL|CC
-CC-201,"Westpac Student Visa Card",ALL|CC
 CC-243,"Woolworths Money Qantas Platinum Credit Card",ALL|CC
-CC-167,"Bankwest Zero Gold MasterCard",ALL|CC
-CC-66,"Bankwest Breeze MasterCard",ALL|CC
-CC-69,"St.George No Annual Fee",ALL|CC
-CC-99,"American Express Qantas Ultimate Card",ALL|CC
-CC-68,"Bankwest Breeze Gold MasterCard",ALL|CC
-CC-17,"Bendigo Bank Platinum",ALL|CC
-CC-19,"Bendigo Bank RSPCA Rescue Rewards",ALL|CC
-CC-379,"David Jones American Express Platinum Card (Membership Rewards)",ALL|CC
-CC-33,"Westpac Low Rate",ALL|CC
-CC-319,"Bank of Melbourne Amplify Classic (Rewards)",ALL|CC
-CC-432,"Westpac Altitude Platinum - Online Only Offer (Rewards)",ALL|CC
-CC-145,"David Jones American Express Card (Membership Rewards)",ALL|CC
-CC-352,"David Jones American Express Card (Qantas)",ALL|CC
-CC-57,"Newcastle Permanent Value+",ALL|CC
-CC-205,"BankSA Amplify Classic (Rewards)",ALL|CC
-CC-397,"BankSA Amplify Platinum (Qantas)",ALL|CC
-CC-302,"Heritage Bank Business Visa",ALL|CC
-CC-91,"BankSA Vertigo Platinum",ALL|CC
-CC-41,"ANZ Balance",ALL|CC
-CC-79,"Heritage Bank Gold Low Rate",ALL|CC
-CC-393,"Bank of Melbourne Amplify Platinum (Qantas)",ALL|CC
-CC-389,"St.George Amplify Platinum (Qantas)",ALL|CC
-CC-287,"Suncorp Clear Options Business",ALL|CC
-CC-440,"Westpac 55 Day Platinum Card - Online Only Offer",ALL|CC
-CC-439,"Westpac 55 Day Card - Online Only Offer",ALL|CC
-CC-380,"David Jones American Express Platinum Card (Qantas)",ALL|CC
+CC-355,"ANZ Low Rate Platinum",ALL|CC
+PL-418,"act. Secured Personal Loan (Fixed)",ALL|PL
+PL-392,"DirectMoney Personal Loan (Fixed, Unsecured)",ALL|PL
+CC-60,"St.George Vertigo",ALL|CC
+PL-132,"CUA Unsecured Personal Loan (Fixed)",ALL|PL
+PL-378,"RateSetter Unsecured Personal Loan (Fixed)",ALL|PL
+CC-314,"Bank of Melbourne Vertigo Platinum",ALL|CC
+PL-426,"Bank Australia Lifestyle Personal Loan (Variable, for Property Owners)",ALL|PL
+PL-394,"GE Money Personal Loan (Fixed, Unsecured)",ALL|PL
+CC-327,"HSBC Platinum Qantas Credit Card",ALL|CC
+CC-326,"ANZ Rewards Platinum",ALL|CC
+PL-424,"RateSetter Unsecured Personal Loan (Fixed)",ALL|PL
+PL-312,"RACV Personal Loan (Fixed, Secured)",ALL|PL
+CC-40,"ME frank Credit Card",ALL|CC
+CC-166,"Bankwest Zero Platinum MasterCard",ALL|CC
+CC-406,"Westpac Low Rate - Online Only Offer",ALL|CC
+CC-275,"Virgin Money Virgin Australia Velocity High Flyer Card",ALL|CC
+PL-70,"Westpac Personal Loan (Fixed, Unsecured)",ALL|PL
+CC-322,"Bankwest Qantas Platinum MasterCard",ALL|CC
+CC-400,"ANZ Frequent Flyer Black",ALL|CC
+CC-311,"American Express Velocity Platinum Card",ALL|CC
+PL-50,"NAB Personal Loan (Variable, Unsecured)",ALL|PL
+PL-17,"Aussie Unsecured Personal Loan (Fixed)",ALL|PL
+CC-152,"NAB Qantas Rewards Premium Card",ALL|CC
+CC-98,"American Express Qantas Discovery Card",ALL|CC
+CC-305,"Big Sky Low Rate Visa",ALL|CC
+CC-264,"Credit Union SA Visa Credit Card",ALL|CC
+CC-43,"ANZ First",ALL|CC
 CC-386,"ANZ Rewards Black",ALL|CC
-CC-162,"Bank of Queensland Platinum Visa Credit Card",ALL|CC
+CC-67,"ANZ Low Rate",ALL|CC
+CC-302,"Heritage Bank Business Visa",ALL|CC
+CC-140,"Woolworths Money Everyday Platinum Credit Card",ALL|CC
+CC-364,"Coles No Annual Fee MasterCard",ALL|CC
+CC-218,"ANZ Frequent Flyer Platinum",ALL|CC
+CC-99,"American Express Qantas Ultimate Card",ALL|CC
+CC-53,"HSBC Credit Card",ALL|CC
+CC-420,"ANZ First - Student Offer",ALL|CC
+CC-201,"Westpac Student Visa Card",ALL|CC
+CC-181,"28 Degrees Platinum MasterCard",ALL|CC
+PL-55,"St.George Get Set Loan (Variable, Unsecured)",ALL|PL
+PL-328,"CUA Unsecured Personal Loan (Variable)",ALL|PL
+CC-186,"ANZ Platinum",ALL|CC
+PL-99,"ANZ Unsecured Personal Loan (Fixed)",ALL|PL
+CC-315,"Bank of Melbourne Vertigo",ALL|CC
+PL-152,"Westpac Personal Flexi Loan (Variable, Unsecured)",ALL|PL
+PL-419,"act. Unsecured Personal Loan (Fixed)",ALL|PL
+CC-22,"NAB Low Rate Card",ALL|CC
+EL-2349,"Lumo Energy Lumo Advantage",ALL|EL
+PL-434,"People's Choice Credit Union Discounted Personal Loan (over $20k, New Cars) (Fixed)",ALL|PL
+PL-427,"Bank Australia Car Loan (Fixed)",ALL|PL
+CC-439,"Westpac 55 Day Card - Online Only Offer",ALL|CC
+CC-72,"HSBC Platinum Credit Card",ALL|CC
+CC-231,"Virgin Money No Annual Fee Card",ALL|CC
+CC-240,"American Express Platinum Edge Credit Card",ALL|CC
+CC-66,"Bankwest Breeze MasterCard",ALL|CC
+EL-2325,"Powershop Online Saver",ALL|EL
+CC-25,"NAB Velocity Rewards Premium Card",ALL|CC
+CC-21,"NAB Premium Card",ALL|CC
+CC-351,"Virgin Money Virgin Australia Velocity Flyer Card - Balance Transfer Offer",ALL|CC
+EL-2175,"Origin Energy DailySaver Plus",ALL|EL
+CC-48,"St.George Vertigo Platinum",ALL|CC
+CC-177,"NAB Qantas Rewards Card",ALL|CC
+PL-283,"Bank of Melbourne Unsecured Personal Loan (Fixed)",ALL|PL
+PL-286,"Bank of Melbourne Unsecured Personal Loan (Variable)",ALL|PL
+PL-51,"St.George Unsecured Personal Loan (Fixed)",ALL|PL
+PL-423,"GE Money Personal Loan (Fixed, Secured)",ALL|PL
+PL-52,"St.George Secured Personal Loan (Fixed)",ALL|PL
+CC-437,"Westpac Altitude - Online Only Offer (Rewards)",ALL|CC
+CC-390,"St.George Amplify Signature (Rewards)",ALL|CC
+EL-2369,"Lumo Energy Lumo Advantage",ALL|EL
+EL-2316,"Alinta Energy Fair Deal 20",ALL|EL
 CC-441,"Quay Credit Union Visa Credit Card",ALL|CC
-CC-204,"St.George Amplify Classic (Rewards)",ALL|CC
+EL-2180,"Origin Energy DailySaver Plus - No Exit Fees",ALL|EL
+CC-365,"Virgin Money Virgin Australia Velocity Flyer Card - Purchase Rate Offer",ALL|CC
+CC-216,"ANZ Frequent Flyer",ALL|CC
+CC-168,"Bankwest Breeze Platinum MasterCard",ALL|CC
+EL-2311,"Diamond Energy Retail Supply Offer",ALL|EL
+EL-2370,"Lumo Energy Lumo Life 10",ALL|EL
+CC-325,"ANZ Rewards",ALL|CC
+CC-20,"NAB Low Fee Card",ALL|CC
+CC-64,"Bankwest Zero MasterCard",ALL|CC
+CC-356,"American Express Velocity Escape Card",ALL|CC
+CC-436,"Coles Low Rate MasterCard",ALL|CC
+EL-2163,"Origin Energy DailySaver Plus",ALL|EL
+CC-26,"NAB Velocity Rewards Card",ALL|CC
+EL-2335,"Lumo Energy Lumo Advantage",ALL|EL
+CC-391,"St.George Amplify Signature (Qantas)",ALL|CC
+CC-388,"St.George Amplify Platinum (Rewards)",ALL|CC
+PL-23,"BankSA Unsecured Personal Loan (Fixed)",ALL|PL
+PL-68,"ANZ Unsecured Personal Loan (Variable)",ALL|PL
+CC-348,"NAB flybuys Rewards Card",ALL|CC
+PL-67,"IMB Bank Secured Personal Loan (Fixed)",ALL|PL
+PL-311,"RACV New Car Loan (Fixed)",ALL|PL
+PL-66,"IMB Bank Unsecured Personal Loan (Fixed)",ALL|PL
+EL-2397,"Lumo Energy Lumo Advantage",ALL|EL
+PL-93,"Westpac Car Loan (Fixed)",ALL|PL
+CC-49,"Bank Australia Low Rate Visa",ALL|CC
+PL-130,"CUA Fixed Rate Car Loan (Up to 2 years old, over $15k)",ALL|PL
+CC-435,"Westpac Altitude Black - Online Only Offer (Qantas)",ALL|CC
+CC-59,"Bankwest More Gold MasterCard",ALL|CC
+CC-432,"Westpac Altitude Platinum - Online Only Offer (Rewards)",ALL|CC
+CC-434,"Westpac Altitude Black - Online Only Offer (Rewards)",ALL|CC
+CC-440,"Westpac 55 Day Platinum Card - Online Only Offer",ALL|CC
+PL-186,"IMB Bank New Car Personal Loan (Fixed)",ALL|PL
+EL-2167,"Origin Energy Maximiser",ALL|EL
+PL-316,"ANZ Online Secured Car Loan (Fixed)",ALL|PL
+CC-172,"Community First Credit Union McGrath Pink Visa",ALL|CC
+CC-350,"Victoria Teachers Mutual Bank Visa Platinum Credit Card",ALL|CC
+CC-410,"G&C Mutual Bank Low Rate Visa Credit Card",ALL|CC
+PL-27,"BankSA Car Loan (Variable)",ALL|PL
+EL-2338,"Sumo Power 36% Pre-pay Monthly",ALL|EL
+EL-2351,"Alinta Energy Fair Deal 35",ALL|EL
+EL-2185,"Origin Energy Maximiser",ALL|EL
+CC-293,"Bendigo Bank Just Business",ALL|CC
+EL-2299,"EnergyAustralia Flexi Saver",ALL|EL
+EL-2292,"EnergyAustralia Flexi Saver",ALL|EL
+CC-438,"Westpac Altitude - Online Only Offer (Qantas)",ALL|CC
+CC-404,"Heritage Bank Platinum",ALL|CC
+EL-2296,"EnergyAustralia Flexi Saver",ALL|EL
+CC-245,"Mozo Big Bot Buster",ALL|CC
+CC-253,"Police Bank Visa Credit Card",ALL|CC
+EL-2307,"EnergyAustralia Flexi Saver",ALL|EL
+CC-79,"Heritage Bank Gold Low Rate",ALL|CC
+EL-2353,"Lumo Energy Lumo Life 10",ALL|EL
+EL-2328,"Diamond Energy Retail Supply Offer",ALL|EL
+EL-2333,"Lumo Energy Lumo Velocity",ALL|EL
+EL-2363,"Simply Energy Standing Offer",ALL|EL
+PL-45,"NAB Personal Loan (Fixed, Unsecured)",ALL|PL
+EL-2339,"Sumo Power 32% Pay on Time",ALL|EL
+EL-2365,"Simply Energy Simply Guaranteed 15",ALL|EL
+PL-54,"St.George Unsecured Personal Loan (Variable)",ALL|PL
+EL-2364,"Simply Energy Simply Guaranteed 13",ALL|EL
+EL-2289,"EnergyAustralia Flexi Saver",ALL|EL
+CC-30,"Westpac Altitude Platinum (Qantas)",ALL|CC
+EL-2336,"Lumo Energy Lumo Basic",ALL|EL
+CC-402,"Bank Australia Platinum Rewards Visa",ALL|CC
+CC-167,"Bankwest Zero Gold MasterCard",ALL|CC
+CC-211,"St.George Amplify Classic (Qantas)",ALL|CC
+CC-324,"Bankwest Qantas MasterCard",ALL|CC
 CC-320,"Bank of Melbourne Amplify Classic (Qantas)",ALL|CC
-CC-255,"Defence Bank True Blue Credit Card",ALL|CC
+CC-394,"Bank of Melbourne Amplify Signature (Rewards)",ALL|CC
+CC-442,"UniBank Credit Card",ALL|CC
+EL-2334,"Lumo Energy Lumo Life 10",ALL|EL
+CC-91,"BankSA Vertigo Platinum",ALL|CC
+CC-395,"Bank of Melbourne Amplify Signature (Qantas)",ALL|CC
+CC-428,"Intech Credit Union Titanium 55 Credit Card",ALL|CC
+CC-256,"SCU Low Rate Visa Credit Card",ALL|CC
+CC-212,"QANTAS Credit Union Lifestyle",ALL|CC
+CC-95,"BankSA Vertigo",ALL|CC
+CC-68,"Bankwest Breeze Gold MasterCard",ALL|CC
+CC-61,"Bankwest More MasterCard",ALL|CC
+CC-42,"Bankwest More Platinum MasterCard",ALL|CC
+EL-2408,"Simply Energy Standard Offer",ALL|EL
+CC-392,"Bank of Melbourne Amplify Platinum (Rewards)",ALL|CC
+CC-366,"HSBC Premier World MasterCard (Rewards Plus)",ALL|CC
+CC-319,"Bank of Melbourne Amplify Classic (Rewards)",ALL|CC

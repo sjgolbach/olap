@@ -24,17 +24,11 @@ DimensionItemView = Backbone.Marionette.ItemView.extend({
 	},
 
 	clickItem: function(){
-		console.log('click!');
 		App.vent.trigger("remove:item", this.model);
 	},
 });
 
 DimensionView = Backbone.Marionette.CollectionView.extend({
-
-	el: function(){
-		return "#selected_" + this.options.dimension;
-	},
-
 	tagName: 'ul',
 
 	childView: DimensionItemView,
@@ -42,19 +36,27 @@ DimensionView = Backbone.Marionette.CollectionView.extend({
 });
 
 
-DimensionsForm = Backbone.Marionette.ItemView.extend({
-
+DimensionsLayout = Backbone.Marionette.LayoutView.extend({
 	template: "#dimension",
 
-	//template: false,
+	regions: {
+		products: "#products",
+		dates: "#dates",
+		domains: "#domains",
+		selected_products: "#selected_products",
+		selected_dates: "#selected_dates",
+		selected_domains: "#selected_domains",
+	},
 
 	initialize: function(){
 		App.dimension = {};
+		App.dimension.products = new DimensionKeys(products);
+		App.dimension.dates = new DimensionKeys(dates);
+		App.dimension.domains = new DimensionKeys(domains);
 		App.selected = {};
-		$.each(dimensions, function( index, dimension ) {
-			App.dimension[dimension] = new DimensionKeys(data[dimension]);
-			App.selected[dimension] = new DimensionKeys();
-		});
+		App.selected.products = new DimensionKeys();
+		App.selected.dates = new DimensionKeys();
+		App.selected.domains = new DimensionKeys();
 	},
 
 	events: {
@@ -67,8 +69,6 @@ DimensionsForm = Backbone.Marionette.ItemView.extend({
 	},
 
 });
-
-
 
 
 
@@ -93,36 +93,23 @@ MarionetteApp = Marionette.Application.extend({
 	clickSubmit: function(){
 		console.log('clicking submit...');
 
-		//var dates = App.selected.dates.models;
-		//var products = App.selected.products.models;
-		//var domains = App.selected.domains.models;
+		var dates = App.selected.dates.models;
+		var products = App.selected.products.models;
+		var domains = App.selected.domains.models;
 
-		var data = {};
-		data.dimensions = [];
-		data.chart_type = $('input[name=chart-type]:checked').val()
-		console.log(data.chart_type);
-
-		$.each(dimensions, function( index, dimension ) {
-			ids = _.pluck(App.selected[dimension].models, 'id');
-			dimension_data = {
-				key: dimension,
-				ids: ids,
-				position: index+1,
-			}
-			data.dimensions.push(dimension_data)
-		});		
-
-		console.log(data)
+		var data = {
+			products: _.pluck(products, 'id'),
+			dates: _.pluck(dates, 'id'),
+			domains: _.pluck(domains, 'id'),
+		};
 
 		$.when(
 			$.post("/site/results", data, function(response) {
-				App.highchart = response.highchart;
+				App.results = response;
 			} )
 		).then(function() {
 			console.log('finished...')
 
-				$('#highcharts').highcharts( App.highchart )
-/*
 				categories = _.pluck(dates, 'id');
 
 				$('#highcharts').highcharts({
@@ -155,14 +142,16 @@ MarionetteApp = Marionette.Application.extend({
 					},
 					series: App.results
 				});
-*/
 
 		});
 
 	},
 
 	selectItem: function(type, key){
+		console.log('selectItem...');
+		console.log(type + ':' + key);
 		var model = App.dimension[type].find(function(model) { return model.get('id') == key; });
+		console.log(model);
 		App.selected[type].add(model);
 	},
 
@@ -179,22 +168,39 @@ $(document).ready(function() {
 		results:	"#results-region",
 	});
 
-	App.form.show( new DimensionsForm() );
+	App.dimensionsLayout = new DimensionsLayout();
 
-	App.selectedView = {};
-	$.each(dimensions, function( index, dimension ) {
+	App.form.show( App.dimensionsLayout );
 
-		App.selectedView[dimension] = new DimensionView({collection: App.selected[dimension], dimension: dimension});
-		App.selectedView[dimension].render();
+	// products
 
-		el = $('#'+dimension);
-		console.log(dimension);
-		el.on('select_node.jstree', function (e, data) {
-			key = data.selected[0];
-			App.selectItem(dimension,key)
-		}).jstree( { 'core' : { 'data' : data[dimension] } } );
+	$('#products').on('select_node.jstree', function (e, data) {
+		key = data.selected[0];
+		App.selectItem('products',key)
+	}).jstree( { 'core' : { 'data' : products } } );
 
-	});
+	var selectedProductView = new DimensionView({collection: App.selected.products});
+	App.dimensionsLayout.showChildView('selected_products', selectedProductView );
+
+	// dates
+
+	$('#dates').on('select_node.jstree', function (e, data) {
+		key = data.selected[0];
+		App.selectItem('dates',key)
+	}).jstree( { 'core' : { 'data' : dates } } );
+
+	var selectedDateView = new DimensionView({collection: App.selected.dates});
+	App.dimensionsLayout.showChildView('selected_dates', selectedDateView );
+
+	// domains
+
+	$('#domains').on('select_node.jstree', function (e, data) {
+		key = data.selected[0];
+		App.selectItem('domains',key)
+	}).jstree( { 'core' : { 'data' : domains } } );
+
+	var selectedDomainView = new DimensionView({collection: App.selected.domains});
+	App.dimensionsLayout.showChildView('selected_domains', selectedDomainView );
 
 
 /*
