@@ -44,14 +44,25 @@ DimensionsForm = Backbone.Marionette.ItemView.extend({
 
 	template: "#form",
 
-	//template: false,
-
 	initialize: function(){
-		App.dimension = {};
-		App.selected = {};
 		$.each(dimensions, function( index, dimension ) {
 			App.dimension[dimension] = new DimensionKeys(data[dimension]);
 			App.selected[dimension] = new DimensionKeys();
+		});
+	},
+
+	onShow: function(){
+		$.each(dimensions, function( index, dimension ) {
+			App.selectedView[dimension] = new DimensionSelectedView({collection: App.selected[dimension], dimension: dimension, position: index+1 });
+			App.selectedView[dimension].render();
+			App.slots[index] = dimension;
+
+			// set el to DOM element and make jsTree object
+			el = $('#'+dimension);
+			el.on('select_node.jstree', function (e, data) {
+				key = data.selected[0];
+				App.selectItem(dimension,key)
+			}).jstree( { 'core' : { 'data' : data[dimension] } } );
 		});
 	},
 
@@ -138,23 +149,12 @@ $(document).ready(function() {
 		results:	"#results-region",
 	});
 
-	App.form.show( new DimensionsForm() );
-
+	App.dimension = {};
+	App.selected = {};
 	App.selectedView = {};
-	App.slots = []
-	$.each(dimensions, function( index, dimension ) {
+	App.slots = [];
 
-		App.selectedView[dimension] = new DimensionSelectedView({collection: App.selected[dimension], dimension: dimension, position: index+1 });
-		App.selectedView[dimension].render();
-		App.slots[index] = dimension;
-
-		el = $('#'+dimension);
-		el.on('select_node.jstree', function (e, data) {
-			key = data.selected[0];
-			App.selectItem(dimension,key)
-		}).jstree( { 'core' : { 'data' : data[dimension] } } );
-
-	});
+	App.form.show( new DimensionsForm() );
 
 	$('.draggable').draggable( {
 		snap: ".droppable", snapMode: "inner"
@@ -167,28 +167,6 @@ $(document).ready(function() {
 		console.log('dropped!')
 	}
 
-/*
-	// products
-
-	var products = new DimensionKeys([],{dimension: 'products' });
-	var productView = new DimensionView({collection: products});
-	App.dimensionsLayout.showChildView('products', productView );
-
-
-	// dates
-
-	var dates = new DimensionKeys([],{dimension: 'dates' });
-	var dateView = new DimensionView({collection: dates});
-	App.dimensionsLayout.showChildView('dates', dateView );
-
-
-	// domains
-
-	var domains = new DimensionKeys([],{dimension: 'domains' });
-	var domainView = new DimensionView({collection: domains});
-	App.dimensionsLayout.showChildView('domains', domainView );
-
-*/
 
 });
 

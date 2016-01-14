@@ -10,6 +10,7 @@
 
 <script>
 	var dimensions = <%== @dimensions.collect{|d| d[:name]} %>;
+	var dimensions_hash = <%== @dimensions.to_json %>;
 	var data = <%== @data.to_json %>;
 </script>
 
@@ -31,7 +32,7 @@
 			</div>
 		</div>
 
-		<% @dimensions.sort_by{|d| d[:position]}.each do |dimension| %>
+		<% @dimensions.each do |dimension| %>
 			<div class="dimension-placeholder dimension-droppable">
 				<div class="droppable" data-position="<%= dimension[:position] %>" >
 					<div class="dimension-wrapper draggable" data-dimension="<%= dimension[:name] %>">
@@ -49,6 +50,20 @@
 			<button id="submit">Submit</button>
 		</div>
 	</div
+</script>
+
+<script type="text/template" id="dimension-item">
+	<div class="dimension-placeholder dimension-droppable">
+		<div class="droppable" data-position="<%%= position %>" >
+			<div class="dimension-wrapper draggable" data-dimension="<%%= name %>">
+				<div class="heading">
+					<h3><%%= name %></h3>
+				</div>
+				<div id="<%%= name %>" class="dimension"></div>
+				<div id="selected_<%%= name %>" class="dimension selected"></div>
+			</div>
+		</div>
+	</div>
 </script>
 
 <script type="text/template" id="dimension-selected-item">
