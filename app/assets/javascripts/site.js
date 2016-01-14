@@ -14,10 +14,9 @@ DimensionKeys = Backbone.Collection.extend({
 
 });
 
-
-DimensionItemView = Backbone.Marionette.ItemView.extend({
+DimensionSelectedItemView = Backbone.Marionette.ItemView.extend({
 	tagName: 'li',
-	template: '#dimension-item',
+	template: '#dimension-selected-item',
 
 	events: {
 		"click": "clickItem",
@@ -29,7 +28,7 @@ DimensionItemView = Backbone.Marionette.ItemView.extend({
 	},
 });
 
-DimensionView = Backbone.Marionette.CollectionView.extend({
+DimensionSelectedView = Backbone.Marionette.CollectionView.extend({
 
 	el: function(){
 		return "#selected_" + this.options.dimension;
@@ -37,14 +36,13 @@ DimensionView = Backbone.Marionette.CollectionView.extend({
 
 	tagName: 'ul',
 
-	childView: DimensionItemView,
+	childView: DimensionSelectedItemView,
 
 });
 
-
 DimensionsForm = Backbone.Marionette.ItemView.extend({
 
-	template: "#dimension",
+	template: "#form",
 
 	//template: false,
 
@@ -112,51 +110,12 @@ MarionetteApp = Marionette.Application.extend({
 			data.dimensions.push(dimension_data)
 		});		
 
-		console.log(data)
-
 		$.when(
 			$.post("/site/results", data, function(response) {
 				App.highchart = response.highchart;
 			} )
 		).then(function() {
-			console.log('finished...')
-
-				$('#highcharts').highcharts( App.highchart )
-/*
-				categories = _.pluck(dates, 'id');
-
-				$('#highcharts').highcharts({
-					chart: {
-						type: 'column'
-					},
-					title: {
-						text: ''
-					},
-					xAxis: {
-						categories: categories,
-						crosshair: true
-					},
-					yAxis: {
-						min: 0,
-					},
-					tooltip: {
-						headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-						pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-							'<td style="padding:0"><b>{point.y}</b></td></tr>',
-						footerFormat: '</table>',
-						shared: true,
-						useHTML: true
-					},
-					plotOptions: {
-						column: {
-							pointPadding: 0.2,
-							borderWidth: 0
-						}
-					},
-					series: App.results
-				});
-*/
-
+			$('#highcharts').highcharts( App.highchart )
 		});
 
 	},
@@ -182,13 +141,14 @@ $(document).ready(function() {
 	App.form.show( new DimensionsForm() );
 
 	App.selectedView = {};
+	App.slots = []
 	$.each(dimensions, function( index, dimension ) {
 
-		App.selectedView[dimension] = new DimensionView({collection: App.selected[dimension], dimension: dimension});
+		App.selectedView[dimension] = new DimensionSelectedView({collection: App.selected[dimension], dimension: dimension, position: index+1 });
 		App.selectedView[dimension].render();
+		App.slots[index] = dimension;
 
 		el = $('#'+dimension);
-		console.log(dimension);
 		el.on('select_node.jstree', function (e, data) {
 			key = data.selected[0];
 			App.selectItem(dimension,key)
@@ -196,6 +156,16 @@ $(document).ready(function() {
 
 	});
 
+	$('.draggable').draggable( {
+		snap: ".droppable", snapMode: "inner"
+	});
+	$('.droppable').droppable( {
+		drop: handleDropEvent
+	});
+
+	function handleDropEvent(){
+		console.log('dropped!')
+	}
 
 /*
 	// products

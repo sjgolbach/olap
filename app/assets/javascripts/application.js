@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require select2
 //= require jstree
+//= require jquery-ui
 
 //= require underscore-1.5.1
 //= require backbone-1.2.2

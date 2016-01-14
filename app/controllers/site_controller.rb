@@ -1,9 +1,15 @@
 class SiteController < ApplicationController
 
 	def index
-		@products = get_key_values('products').to_json
-		@dates = get_key_values('dates').to_json
-		@domains = get_key_values('domains').to_json
+		dimensions = []
+		dimensions << {:position => 1, :name => 'dates'}
+		dimensions << {:position => 2, :name => 'products'}
+		dimensions << {:position => 3, :name => 'domains'}
+		@data = {}
+		@dimensions = dimensions.sort_by{|d| d[:position]}
+		@dimensions.each do |dimension|
+			@data[dimension[:name]] = get_key_values(dimension[:name])
+		end
 	end
 
 	def dimension
@@ -11,7 +17,6 @@ class SiteController < ApplicationController
 		results = get_key_values(params[:dimension])
 		results.sort_by! { |hsh| hsh[:text] }
 		render :json => results.to_json
-
 	end
 
 	def results

@@ -9,52 +9,48 @@
 
 
 <script>
-	var dates = <%== @dates %>
-	var products = <%== @products %>
-	var domains = <%== @domains %>
-
-	var dimensions = ['dates','products','domains'];
-	var data = {};
-	data['dates'] = dates;
-	data['products'] = products;
-	data['domains'] = domains;
-
+	var dimensions = <%== @dimensions.collect{|d| d[:name]} %>;
+	var data = <%== @data.to_json %>;
 </script>
 
-<script type="text/template" id="dimension">
+<script type="text/template" id="form">
 	<div id="dimensions">
-		<div class="dimension-wrapper chart-wrapper">
-			<h3>Charts</h3>
-			<ul id="chart" class="dimension chart">
-				<li><input type="radio" name="chart-type" value="column"> &nbsp; Column</li>
-				<li><input type="radio" name="chart-type" value="line"> &nbsp; Line</li>
-				<li><input type="radio" name="chart-type" value="area"> &nbsp; Area</li>
-				<li><input type="radio" name="chart-type" value="bar"> &nbsp; Bar</li>
-				<li><input type="radio" name="chart-type" value="pie"> &nbsp; Pie</li>
-				<li><input type="radio" name="chart-type" value="stacked-area"> &nbsp; Stacked Area</li>
-			</ul>
+		<div data-position="0" class="dimension-placeholder">
+			<div class="dimension-wrapper chart-wrapper">
+				<div class="heading">
+					<h3>Charts</h3>
+				</div>
+				<ul id="chart" class="dimension chart">
+					<li><input type="radio" name="chart-type" value="column"> &nbsp; Column</li>
+					<li><input type="radio" name="chart-type" value="line"> &nbsp; Line</li>
+					<li><input type="radio" name="chart-type" value="area"> &nbsp; Area</li>
+					<li><input type="radio" name="chart-type" value="bar"> &nbsp; Bar</li>
+					<li><input type="radio" name="chart-type" value="pie"> &nbsp; Pie</li>
+					<li><input type="radio" name="chart-type" value="stacked-area"> &nbsp; Stacked Area</li>
+				</ul>
+			</div>
 		</div>
-		<div class="dimension-wrapper">
-			<h3>Products</h3>
-			<div id="products" class="dimension"></div>
-			<div id="selected_products" class="dimension selected"></div>
-		</div>
-		<div class="dimension-wrapper">
-			<h3>Dates</h3>
-			<div id="dates" class="dimension"></div>
-			<div id="selected_dates" class="dimension selected"></div>
-		</div>
-		<div class="dimension-wrapper">
-			<h3>Domains</h3>
-			<div id="domains" class="dimension"></div>
-			<div id="selected_domains" class="dimension selected"></div>
-		</div>
+
+		<% @dimensions.sort_by{|d| d[:position]}.each do |dimension| %>
+			<div class="dimension-placeholder dimension-droppable">
+				<div class="droppable" data-position="<%= dimension[:position] %>" >
+					<div class="dimension-wrapper draggable" data-dimension="<%= dimension[:name] %>">
+						<div class="heading">
+							<h3><%= dimension[:name].capitalize %></h3>
+						</div>
+						<div id="<%= dimension[:name] %>" class="dimension"></div>
+						<div id="selected_<%= dimension[:name] %>" class="dimension selected"></div>
+					</div>
+				</div>
+			</div>
+		<% end %>
+
 		<div class="actions">
 			<button id="submit">Submit</button>
 		</div>
 	</div
 </script>
 
-<script type="text/template" id="dimension-item">
+<script type="text/template" id="dimension-selected-item">
 	<%%= text %>
 </script>
