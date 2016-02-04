@@ -2,14 +2,16 @@
 //  ENTITIES
 /*----------------------------------------------------------------------*/
 
-DimensionKey = Backbone.Model.extend({});
+Dimension = Backbone.Model.extend({});
 
-DimensionKeys = Backbone.Collection.extend({
+Dimensions = Backbone.Collection.extend({
 	
-	model: DimensionKey,
+	model: Dimension,
+
+	//comparator: 'position',
 
 	initialize: function(models, options) {
-		this.comparator = 'text';
+		this.comparator = 'position';
 	},
 
 });
@@ -40,31 +42,42 @@ DimensionSelectedView = Backbone.Marionette.CollectionView.extend({
 
 });
 
+DimensionItemView = Backbone.Marionette.ItemView.extend({
+
+	template: '#dimension-item',
+
+});
+
+DimensionView = Backbone.Marionette.CollectionView.extend({
+
+	el: "#dimensions",
+
+	childView: DimensionItemView,
+
+	onRender: function(){
+		$.each(App.dimensions.models, function( index, model ) {
+
+			var key = model.get('name');
+
+			model.attributes.selectedView = new DimensionSelectedView({collection: model.attributes.selected, dimension: model.attributes.name }) ;
+
+			model.attributes.selectedView.render();
+			
+			// set el to DOM element and make jsTree object
+			el = $('#'+key);
+			el.on('select_node.jstree', function (e, data) {
+				id = data.selected[0];
+				App.selectItem(model,id)
+			}).jstree( { 'core' : { 'data' : dimensions_data[index] } } );
+			
+		});
+	},
+
+});
+
 DimensionsForm = Backbone.Marionette.ItemView.extend({
 
-	template: "#form",
-
-	initialize: function(){
-		$.each(dimensions, function( index, dimension ) {
-			App.dimension[dimension] = new DimensionKeys(data[dimension]);
-			App.selected[dimension] = new DimensionKeys();
-		});
-	},
-
-	onShow: function(){
-		$.each(dimensions, function( index, dimension ) {
-			App.selectedView[dimension] = new DimensionSelectedView({collection: App.selected[dimension], dimension: dimension, position: index+1 });
-			App.selectedView[dimension].render();
-			App.slots[index] = dimension;
-
-			// set el to DOM element and make jsTree object
-			el = $('#'+dimension);
-			el.on('select_node.jstree', function (e, data) {
-				key = data.selected[0];
-				App.selectItem(dimension,key)
-			}).jstree( { 'core' : { 'data' : data[dimension] } } );
-		});
-	},
+	el: '#form',
 
 	events: {
 		"click #submit": "clickSubmit",
@@ -95,28 +108,23 @@ MarionetteApp = Marionette.Application.extend({
 	},
 
 	removeItem: function(model){
-		var dimension = model.get('dimension');
-		App.selected[dimension].remove(model);
+		var key = model.get('dimension');
+		App.dimension[key]['selected'].remove(model);
 	},
 
 	clickSubmit: function(){
 		console.log('clicking submit...');
 
-		//var dates = App.selected.dates.models;
-		//var products = App.selected.products.models;
-		//var domains = App.selected.domains.models;
-
 		var data = {};
 		data.dimensions = [];
 		data.chart_type = $('input[name=chart-type]:checked').val()
-		console.log(data.chart_type);
 
-		$.each(dimensions, function( index, dimension ) {
-			ids = _.pluck(App.selected[dimension].models, 'id');
+		$.each(App.dimensions.models, function( index, model ) {
+			ids = _.pluck(model.attributes.selected.models, 'id');
 			dimension_data = {
-				key: dimension,
+				key: model.get('name'),
 				ids: ids,
-				position: index+1,
+				position: model.get('position'),
 			}
 			data.dimensions.push(dimension_data)
 		});		
@@ -131,9 +139,10 @@ MarionetteApp = Marionette.Application.extend({
 
 	},
 
-	selectItem: function(type, key){
-		var model = App.dimension[type].find(function(model) { return model.get('id') == key; });
-		App.selected[type].add(model);
+	selectItem: function(dimension, id){
+		console.log('selectItem...')
+		var model = dimension.get('data').find(function(model) { return model.get('id') == id; });
+		dimension.attributes.selected.add(model);
 	},
 
 });
@@ -145,26 +154,60 @@ $(document).ready(function() {
 	App.start();
 
 	App.addRegions({
-		form:		"#form-region",
-		results:	"#results-region",
+		results:	"#results",
 	});
 
-	App.dimension = {};
-	App.selected = {};
-	App.selectedView = {};
-	App.slots = [];
+	App.dimensions = new Dimensions(dimensions);
 
-	App.form.show( new DimensionsForm() );
+	$.each(App.dimensions.models, function( index, dimension ) {
+		dimension.set('data', new Dimensions(dimensions_data[index]) )
+		dimension.set('selected', new Dimensions() );
+	});
+
+	App.form = new DimensionsForm();
+
+	App.dimensionView = new DimensionView({collection: App.dimensions})
+	App.dimensionView.render();
 
 	$('.draggable').draggable( {
-		snap: ".droppable", snapMode: "inner"
+		snap: ".droppable", 
+		snapMode: "inner", 
+		revert: "invalid"
 	});
 	$('.droppable').droppable( {
+		tolerance: "intersect",
 		drop: handleDropEvent
 	});
 
-	function handleDropEvent(){
+	function handleDropEvent(event, ui){
+		var source_key = ui.draggable[0].attributes['data-dimension'].value;
+		var source_position = parseInt(ui.draggable[0].attributes['data-position'].value);
+		var target_key = event.target.attributes['data-dimension'].value;
+		var target_position = parseInt(event.target.attributes['data-position'].value);
 		console.log('dropped!')
+		console.log(source_position);
+		console.log(target_position);
+		if(source_position !== target_position) {
+			var found = false;
+			$.each(App.dimensions.models, function( index, model ) {
+				if(!found){
+					key = model.get('name')
+					position = model.get('position')
+					str = "===" + key + " | " + position + " | " + target_position;
+					console.log(str);
+					if(position === target_position){
+						found = true;
+						model.set('position', source_position);
+						dropped_model = App.dimensions.models.find(function(model) { return model.get('name') == source_key; })
+						dropped_model.set('position', target_position);
+					}
+				}
+			})
+			console.log(App.dimensions)
+			App.dimensionView.reorder();
+		}
+		//console.log(event);
+		//console.log(ui);
 	}
 
 

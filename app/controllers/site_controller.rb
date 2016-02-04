@@ -1,15 +1,15 @@
 class SiteController < ApplicationController
 
 	def index
-		dimensions = []
-		dimensions << {:position => 1, :name => 'dates'}
-		dimensions << {:position => 2, :name => 'products'}
-		dimensions << {:position => 3, :name => 'domains'}
-		@data = {}
-		@dimensions = dimensions.sort_by{|d| d[:position]}
-		@dimensions.each do |dimension|
-			@data[dimension[:name]] = get_key_values(dimension[:name])
-		end
+		@dimensions = [
+			{:name => 'dates', :position => 2},
+			{:name => 'products', :position => 1},
+			{:name => 'domains', :position => 3},
+		]
+
+		@dimension_keys = @dimensions.collect{|d| d[:name]}
+		@dimensions_data = @dimensions.collect{|d| get_key_values(d[:name]) }
+
 	end
 
 	def dimension

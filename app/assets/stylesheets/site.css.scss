@@ -2,11 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#dimensions {margin:10px; height:300px; }
+#form {margin:10px; height:300px; }
 
 h3 {}
 
-.dimension-wrapper {
+.dimension-box {
 	box-sizing: border-box;
 	width: 260px; 
 	position: relative;
@@ -15,7 +15,7 @@ h3 {}
 	border: 1px solid #ddd;
 }
 
-.dimension-wrapper:hover {
+.dimension-box:hover {
 	background: #ddd;
 }
 

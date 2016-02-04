@@ -1,61 +1,44 @@
 
-<div id="form-region">
-</div>
+<div id="form">
+	<div data-position="0" class="dimension-placeholder">
+		<div class="dimension-box chart-wrapper">
+			<div class="heading">
+				<h3>Charts</h3>
+			</div>
+			<ul id="chart" class="dimension chart">
+				<li><input type="radio" name="chart-type" value="column"> &nbsp; Column</li>
+				<li><input type="radio" name="chart-type" value="line"> &nbsp; Line</li>
+				<li><input type="radio" name="chart-type" value="area"> &nbsp; Area</li>
+				<li><input type="radio" name="chart-type" value="bar"> &nbsp; Bar</li>
+				<li><input type="radio" name="chart-type" value="pie"> &nbsp; Pie</li>
+				<li><input type="radio" name="chart-type" value="stacked-area"> &nbsp; Stacked Area</li>
+			</ul>
+		</div>
+	</div>
 
-<div id="results-region">
+	<div id="dimensions"></div>
+
+	<div class="actions">
+		<button id="submit">Submit</button>
+	</div>
+</div
+
+<div id="results">
 	<div id="highcharts"></div>
 </div>
 
 
 
 <script>
-	var dimensions = <%== @dimensions.collect{|d| d[:name]} %>;
-	var dimensions_hash = <%== @dimensions.to_json %>;
-	var data = <%== @data.to_json %>;
+	var dimensions = <%== @dimensions.to_json %>;
+	var dimensions_data = <%== @dimensions_data.to_json %>;
 </script>
 
-<script type="text/template" id="form">
-	<div id="dimensions">
-		<div data-position="0" class="dimension-placeholder">
-			<div class="dimension-wrapper chart-wrapper">
-				<div class="heading">
-					<h3>Charts</h3>
-				</div>
-				<ul id="chart" class="dimension chart">
-					<li><input type="radio" name="chart-type" value="column"> &nbsp; Column</li>
-					<li><input type="radio" name="chart-type" value="line"> &nbsp; Line</li>
-					<li><input type="radio" name="chart-type" value="area"> &nbsp; Area</li>
-					<li><input type="radio" name="chart-type" value="bar"> &nbsp; Bar</li>
-					<li><input type="radio" name="chart-type" value="pie"> &nbsp; Pie</li>
-					<li><input type="radio" name="chart-type" value="stacked-area"> &nbsp; Stacked Area</li>
-				</ul>
-			</div>
-		</div>
-
-		<% @dimensions.each do |dimension| %>
-			<div class="dimension-placeholder dimension-droppable">
-				<div class="droppable" data-position="<%= dimension[:position] %>" >
-					<div class="dimension-wrapper draggable" data-dimension="<%= dimension[:name] %>">
-						<div class="heading">
-							<h3><%= dimension[:name].capitalize %></h3>
-						</div>
-						<div id="<%= dimension[:name] %>" class="dimension"></div>
-						<div id="selected_<%= dimension[:name] %>" class="dimension selected"></div>
-					</div>
-				</div>
-			</div>
-		<% end %>
-
-		<div class="actions">
-			<button id="submit">Submit</button>
-		</div>
-	</div
-</script>
 
 <script type="text/template" id="dimension-item">
 	<div class="dimension-placeholder dimension-droppable">
-		<div class="droppable" data-position="<%%= position %>" >
-			<div class="dimension-wrapper draggable" data-dimension="<%%= name %>">
+		<div class="droppable" data-dimension="<%%= name %>" data-position="<%%= position %>" >
+			<div class="dimension-box draggable" data-dimension="<%%= name %>" data-position="<%%= position %>">
 				<div class="heading">
 					<h3><%%= name %></h3>
 				</div>
