@@ -8,8 +8,6 @@ Dimensions = Backbone.Collection.extend({
 	
 	model: Dimension,
 
-	//comparator: 'position',
-
 	initialize: function(models, options) {
 		this.comparator = 'position';
 	},
@@ -109,7 +107,8 @@ MarionetteApp = Marionette.Application.extend({
 
 	removeItem: function(model){
 		var key = model.get('dimension');
-		App.dimension[key]['selected'].remove(model);
+		var dimension = App.dimensions.models.find(function(model) { return model.get('name') == key; })
+		dimension.attributes.selected.remove(model)
 	},
 
 	clickSubmit: function(){
@@ -198,13 +197,24 @@ $(document).ready(function() {
 					if(position === target_position){
 						found = true;
 						model.set('position', source_position);
-						dropped_model = App.dimensions.models.find(function(model) { return model.get('name') == source_key; })
+						dropped_model = App.dimensions.models.find(function(model) { return model.get('name') == source_key; });
 						dropped_model.set('position', target_position);
 					}
 				}
 			})
 			console.log(App.dimensions)
-			App.dimensionView.reorder();
+			$('.draggable').draggable('destroy');
+			$('.droppable').droppable('destroy');
+			App.dimensionView.render();
+			$('.draggable').draggable( {
+				snap: ".droppable", 
+				snapMode: "inner", 
+				revert: "invalid"
+			});
+			$('.droppable').droppable( {
+				tolerance: "intersect",
+				drop: handleDropEvent
+			});
 		}
 		//console.log(event);
 		//console.log(ui);

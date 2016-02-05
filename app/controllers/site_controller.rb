@@ -2,8 +2,8 @@ class SiteController < ApplicationController
 
 	def index
 		@dimensions = [
-			{:name => 'dates', :position => 2},
-			{:name => 'products', :position => 1},
+			{:name => 'dates', :position => 1},
+			{:name => 'products', :position => 2},
 			{:name => 'domains', :position => 3},
 		]
 
