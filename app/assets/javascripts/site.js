@@ -61,12 +61,22 @@ DimensionView = Backbone.Marionette.CollectionView.extend({
 
 			model.attributes.selectedView.render();
 			
+			var data1 = dimensions_data[index];
+			var data2 = [];
+
+			$.each(model.attributes.data.models, function( index, model ) {
+				data2.push({'id': model.get('id'), 'text': model.get('text'), 'parent' : model.get('parent'), 'dimension': model.get('dimension')});
+			})
+
+			console.log(data1);
+			console.log(data2);
+
 			// set el to DOM element and make jsTree object
 			el = $('#'+key);
 			el.on('select_node.jstree', function (e, data) {
 				id = data.selected[0];
 				App.selectItem(model,id)
-			}).jstree( { 'core' : { 'data' : dimensions_data[index] } } );
+			}).jstree( { 'core' : { 'data' : data2 } } );
 			
 		});
 	},
@@ -124,6 +134,7 @@ MarionetteApp = Marionette.Application.extend({
 				key: model.get('name'),
 				ids: ids,
 				position: model.get('position'),
+				order: model.get('db_order'),
 			}
 			data.dimensions.push(dimension_data)
 		});		
@@ -168,15 +179,7 @@ $(document).ready(function() {
 	App.dimensionView = new DimensionView({collection: App.dimensions})
 	App.dimensionView.render();
 
-	$('.draggable').draggable( {
-		snap: ".droppable", 
-		snapMode: "inner", 
-		revert: "invalid"
-	});
-	$('.droppable').droppable( {
-		tolerance: "intersect",
-		drop: handleDropEvent
-	});
+	setupDragDrop('create');
 
 	function handleDropEvent(event, ui){
 		var source_key = ui.draggable[0].attributes['data-dimension'].value;
@@ -192,8 +195,8 @@ $(document).ready(function() {
 				if(!found){
 					key = model.get('name')
 					position = model.get('position')
-					str = "===" + key + " | " + position + " | " + target_position;
-					console.log(str);
+					//str = "===" + key + " | " + position + " | " + target_position;
+					//console.log(str);
 					if(position === target_position){
 						found = true;
 						model.set('position', source_position);
@@ -202,10 +205,18 @@ $(document).ready(function() {
 					}
 				}
 			})
-			console.log(App.dimensions)
-			$('.draggable').draggable('destroy');
-			$('.droppable').droppable('destroy');
-			App.dimensionView.render();
+			//console.log(App.dimensions)
+			setupDragDrop('destroy');
+			App.dimensionView.collection.sort();
+			//App.dimensionView.render();
+			setupDragDrop('create');
+		}
+		console.log(App.dimensionView);
+		//console.log(ui);
+	}
+
+	function setupDragDrop(state){
+		if(state === 'create'){
 			$('.draggable').draggable( {
 				snap: ".droppable", 
 				snapMode: "inner", 
@@ -215,11 +226,11 @@ $(document).ready(function() {
 				tolerance: "intersect",
 				drop: handleDropEvent
 			});
+		} else {
+			$('.draggable').draggable('destroy');
+			$('.droppable').droppable('destroy');
 		}
-		//console.log(event);
-		//console.log(ui);
 	}
-
 
 });
 

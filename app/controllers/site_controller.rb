@@ -2,11 +2,12 @@ class SiteController < ApplicationController
 
 	def index
 		@dimensions = [
-			{:name => 'dates', :position => 1},
-			{:name => 'products', :position => 2},
-			{:name => 'domains', :position => 3},
+			{:name => 'dates', :position => 2, :db_order => 1},
+			{:name => 'products', :position => 1, :db_order => 2},
+			{:name => 'domains', :position => 3, :db_order => 3},
 		]
 
+		@dimensions.sort_by!{|v| v[:position]}
 		@dimension_keys = @dimensions.collect{|d| d[:name]}
 		@dimensions_data = @dimensions.collect{|d| get_key_values(d[:name]) }
 
@@ -25,9 +26,12 @@ class SiteController < ApplicationController
 		chart_type = params[:chart_type] || 'column'
 
 		ids = {}
+		db_keys = {}
 		dimensions.each do |key, dimension|
 			puts dimension
 			position = dimension['position']
+			order = dimension['order']
+			db_keys[position] = order
 			ids[position] = dimension['ids']
 		end
 
@@ -36,7 +40,10 @@ class SiteController < ApplicationController
 			ids['2'].each do |d2|
 				ary = []
 				ids['1'].each do |d1|
-					key = "#{d1}:#{d2}:#{d3}"
+					key1 = eval("d#{db_keys['1']}")
+					key2 = eval("d#{db_keys['2']}")
+					key3 = eval("d#{db_keys['3']}")
+					key = "#{key1}:#{key2}:#{key3}"
 					puts key
 					ary << $redis.get(key).to_i #
 				end
